@@ -1,0 +1,67 @@
+{
+	"name": "color-picker",
+	"description": "Color picker",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com"
+	},
+	"author": "Tane",
+	"license": "MIT",
+	"version": "1.0.1",
+	"publisher": "tane",
+	"categories": [
+		"Visualization"
+	],
+	"engines": {
+		"vscode": "^1.43.0"
+	},
+	"activationEvents": [
+		"onLanguage:plaintext"
+	],
+	"main": "./client/out/extension",
+	"contributes": {
+		"configuration": {
+			"type": "object",
+			"title": "Color picker",
+			"properties": {
+				"colorPicker.maxNumberOfColorsToDisplayPerDocument": {
+					"scope": "resource",
+					"type": "number",
+					"default": -1,
+					"description": "Displays maximum number of colors per document."
+				},
+				"colorPicker.colorCase": {
+					"type": "string",
+					"default": "Uppercase",
+					"enum": [
+						"Uppercase",
+						"Lowercase"
+					],
+					"description": "The case for genrated hex color.",
+					"enumDescriptions": [
+						"Uppercase",
+						"Lowercase"
+					]
+				}
+			}
+		}
+	},
+	"scripts": {
+		"vscode:prepublish": "npm run compile",
+		"compile": "tsc -b",
+		"watch": "tsc -b -w",
+		"postinstall": "cd client && npm install && cd ../server && npm install && cd ..",
+		"package": "vsce package",
+		"publish": "vsce publish"
+	},
+	"devDependencies": {
+		"@types/node": "^20.8.2",
+		"eslint": "^8.50.0",
+		"@typescript-eslint/parser": "^6.7.4",
+		"typescript": "^5.2.2",
+		"vsce": "^1.80.0"
+	},
+	"dependencies": {
+		"@kurkle/color": "^0.3.2"
+	}
+}
